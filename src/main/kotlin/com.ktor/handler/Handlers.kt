@@ -15,7 +15,7 @@ import java.io.File
 
 @location("/") class Index
 
-@location("/signin") data class Login(val userId: String = "", val password: String = "")
+@location("/login") data class Login(val userId: String = "", val password: String = "")
 
 fun Route.handler() {
 
