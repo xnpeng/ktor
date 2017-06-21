@@ -21,10 +21,15 @@ import java.io.File
 
 fun Route.handler() {
 
-    static {
-        staticRootFolder = File("public")
-        files(".")
-        //default("index.html")
+    //static{
+    //staticRootFolder = File("public")
+    //files(".")
+    //default("index.html")
+    //}
+
+    static("public") {
+        val basedir = File("public")
+        files(basedir)
     }
 
     get<Index> {
@@ -44,7 +49,7 @@ fun Route.handler() {
         }
     }
 
-    get<MyLogin>{
+    get<MyLogin> {
         call.respond(FreeMarkerContent("login.ftl", emptyMap<String, Any>(), ""))
     }
 }
