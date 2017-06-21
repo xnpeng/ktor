@@ -17,11 +17,13 @@ import java.io.File
 
 @location("/login") data class Login(val userId: String = "", val password: String = "")
 
+@location("/mylogin") data class MyLogin(val userId: String = "", val password: String = "")
+
 fun Route.handler() {
 
     static {
         staticRootFolder = File("public")
-        //files(".")
+        files(".")
         //default("index.html")
     }
 
@@ -40,5 +42,9 @@ fun Route.handler() {
         } else {
             call.respond(FreeMarkerContent("index.ftl", mapOf("error" to "login failed", "user" to null), ""))
         }
+    }
+
+    get<MyLogin>{
+        call.respond(FreeMarkerContent("login.ftl", emptyMap<String, Any>(), ""))
     }
 }
