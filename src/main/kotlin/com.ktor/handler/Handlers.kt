@@ -15,29 +15,31 @@ import java.io.File
 
 @location("/") class Index
 
+@location("/login") class Signin
+
 @location("/login") data class Login(val userId: String = "", val password: String = "")
 
-@location("/mylogin") data class MyLogin(val userId: String = "", val password: String = "")
+@location("/logout") class Logout
 
 fun Route.handler() {
-
-    //static{
-    //staticRootFolder = File("public")
-    //files(".")
-    //default("index.html")
-    //}
+/*
+    static {
+        staticRootFolder = File("public")
+        files(".")
+        default("index.html")
+    }
+*/
 
     static("public") {
-        val basedir = File("public")
-        files(basedir)
+        files(".")
     }
 
     get<Index> {
-        call.respond(FreeMarkerContent("index.ftl", mapOf("userId" to "username", "password" to "password"), ""))
+        call.respond(FreeMarkerContent("index.ftl", mapOf("userId" to "username", "password" to "password"), "1"))
     }
 
-    get<Login> {
-        call.respond(FreeMarkerContent("login.ftl", emptyMap<String, Any>(), ""))
+    get<Signin> {
+        call.respond(FreeMarkerContent("login.ftl", mapOf("userId" to "username", "password" to "password"), "2"))
     }
 
     post<Login> {
@@ -49,7 +51,7 @@ fun Route.handler() {
         }
     }
 
-    get<MyLogin> {
-        call.respond(FreeMarkerContent("login.ftl", emptyMap<String, Any>(), ""))
+    get<Logout> {
+        call.respond(FreeMarkerContent("index.ftl", mapOf("logout" to "true", "error" to null, "user" to null), ""))
     }
 }

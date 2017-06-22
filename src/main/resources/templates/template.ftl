@@ -18,8 +18,10 @@
             <nav class="nav">
                 <ul class="nav-list">
                     <li class="nav-item"><a class="pure-button" href="/">Home page</a></li>
-                    <br/><br/>
+                    <br/>
                     <li class="nav-item"><a class="pure-button" href="/login">Login page</a></li>
+                    <br/>
+                    <li class="nav-item"><a class="pure-button" href="/logout">Logout page</a></li>
                 </ul>
             </nav>
         </div>
@@ -28,7 +30,7 @@
         <h2>Ktor App</h2>
         <#nested />
     </div>
-    <div class="footer" style="margin:auto">
+    <div class="footer" style="margin:auto;border-top: 1px solid gray">
         ktor Inc., ${.now?string("yyyy")}
     </div>
 </div>
